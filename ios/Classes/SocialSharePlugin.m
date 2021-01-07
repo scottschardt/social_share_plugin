@@ -140,9 +140,7 @@
     content.contentURL = [NSURL URLWithString:url];
     content.quote = quote;
     UIViewController* controller = [UIApplication sharedApplication].delegate.window.rootViewController;
-[FBSDKShareDialog showFromViewController:self
-                              withContent:content
-                                 delegate:nil];
+    [FBSDKShareDialog showFromViewController:self withContent:content delegate:nil];
     }
 
 - (void)instagramShare:(NSString*)imagePath {
@@ -207,17 +205,3 @@
     [_channel invokeMethod:@"onError" arguments:nil];
     NSLog(@"%@",error);
 }
-
-@end
-© 2021 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
