@@ -91,9 +91,9 @@
 - (void)facebookShareLink:(NSString*)quote
                       url:(NSString*)url {
     FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
-    if(url) {
-        content.contentURL = [NSURL URLWithString:url];
-    }
+    // if(url) {
+    //     content.contentURL = [NSURL URLWithString:url];
+    // }
 
     content.quote = quote;
     UIViewController* controller = [UIApplication sharedApplication].delegate.window.rootViewController;
