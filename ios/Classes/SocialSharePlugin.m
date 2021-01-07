@@ -130,6 +130,10 @@
     content.photos = @[photo];
     UIViewController* controller = [UIApplication sharedApplication].delegate.window.rootViewController;
     [FBSDKShareDialog showFromViewController:controller withContent:content delegate:self];
+
+    FBSDKShareButton *button = [[FBSDKShareButton alloc] init];
+    button.shareContent = content;  
+    [self.view addSubview:button];
 }
 
 - (void)facebookShareLink:(NSString*)quote
@@ -137,8 +141,8 @@
     FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
     content.contentURL = [NSURL URLWithString:url];
     content.quote = quote;
-    UIViewController* controller = [UIApplication sharedApplication].delegate.window.rootViewController;
-    [FBSDKShareDialog showFromViewController:controller withContent:content delegate:self];
+    // UIViewController* controller = [UIApplication sharedApplication].delegate.window.rootViewController;
+    [FBSDKShareDialog showFromViewController:self withContent:content delegate:nil];
 }
 
 - (void)instagramShare:(NSString*)imagePath {
