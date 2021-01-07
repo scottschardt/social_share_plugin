@@ -90,9 +90,10 @@
           result(false);
       }
   } else if([@"shareToFeedFacebookLink" isEqualToString:call.method]) {
-      NSURL *fbURL = [NSURL URLWithString:@"fbapi://"];
-        [self facebookShareLink:call.arguments[@"quote"] url:call.arguments[@"url"]];
-        result(nil);
+    //   NSURL *fbURL = [NSURL URLWithString:@"fbapi://"];
+    //   if([[UIApplication sharedApplication] canOpenURL:fbURL]) {
+          [self facebookShareLink:call.arguments[@"quote"] url:call.arguments[@"url"]];
+          result(nil);
 
       }
   } else if([@"shareToTwitterLink" isEqualToString:call.method]) {
