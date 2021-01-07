@@ -91,19 +91,9 @@
       }
   } else if([@"shareToFeedFacebookLink" isEqualToString:call.method]) {
       NSURL *fbURL = [NSURL URLWithString:@"fbapi://"];
-      if([[UIApplication sharedApplication] canOpenURL:fbURL]) {
-          [self facebookShareLink:call.arguments[@"quote"] url:call.arguments[@"url"]];
-          result(nil);
-      } else {
         [self facebookShareLink:call.arguments[@"quote"] url:call.arguments[@"url"]];
-          result(nil);
-        //   NSString *fbLink = @"itms-apps://itunes.apple.com/us/app/apple-store/id284882215";
-        //   if (@available(iOS 10.0, *)) {
-        //       [[UIApplication sharedApplication] openURL:[NSURL URLWithString:fbLink] options:@{} completionHandler:^(BOOL success) {}];
-        //   } else {
-        //       [[UIApplication sharedApplication] openURL:[NSURL URLWithString:fbLink]];
-        //   }
-        //   result(false);
+        result(nil);
+
       }
   } else if([@"shareToTwitterLink" isEqualToString:call.method]) {
       NSURL *twitterURL = [NSURL URLWithString:@"twitter://"];
