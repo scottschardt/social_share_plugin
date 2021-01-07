@@ -38,7 +38,7 @@ class SocialSharePlugin {
 
   static Future<void> shareToFeedFacebook({
     String caption,
-    @required String path,
+    String path,
     OnSuccessHandler onSuccess,
     OnCancelHandler onCancel,
     OnErrorHandler onError,
@@ -63,7 +63,7 @@ class SocialSharePlugin {
 
   static Future<dynamic> shareToFeedFacebookLink({
     String quote,
-    @required String url,
+    String url,
     OnSuccessHandler onSuccess,
     OnCancelHandler onCancel,
     OnErrorHandler onError,
@@ -88,7 +88,7 @@ class SocialSharePlugin {
 
   static Future<bool> shareToTwitterLink({
     String text,
-    @required String url,
+    String url,
     OnSuccessHandler onSuccess,
     OnCancelHandler onCancel,
   }) async {
