@@ -91,18 +91,20 @@
       }
   } else if([@"shareToFeedFacebookLink" isEqualToString:call.method]) {
       NSURL *fbURL = [NSURL URLWithString:@"fbapi://"];
+      if([[UIApplication sharedApplication] canOpenURL:fbURL]) {
           [self facebookShareLink:call.arguments[@"quote"] url:call.arguments[@"url"]];
           result(nil);
-    //   if([[UIApplication sharedApplication] canOpenURL:fbURL]) {
-    //   } else {
-    //       NSString *fbLink = @"itms-apps://itunes.apple.com/us/app/apple-store/id284882215";
-    //       if (@available(iOS 10.0, *)) {
-    //           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:fbLink] options:@{} completionHandler:^(BOOL success) {}];
-    //       } else {
-    //           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:fbLink]];
-    //       }
-    //       result(false);
-    //   }
+      } else {
+        [self facebookShareLink:call.arguments[@"quote"] url:call.arguments[@"url"]];
+          result(nil);
+        //   NSString *fbLink = @"itms-apps://itunes.apple.com/us/app/apple-store/id284882215";
+        //   if (@available(iOS 10.0, *)) {
+        //       [[UIApplication sharedApplication] openURL:[NSURL URLWithString:fbLink] options:@{} completionHandler:^(BOOL success) {}];
+        //   } else {
+        //       [[UIApplication sharedApplication] openURL:[NSURL URLWithString:fbLink]];
+        //   }
+        //   result(false);
+      }
   } else if([@"shareToTwitterLink" isEqualToString:call.method]) {
       NSURL *twitterURL = [NSURL URLWithString:@"twitter://"];
       if([[UIApplication sharedApplication] canOpenURL:twitterURL]) {
@@ -130,10 +132,6 @@
     content.photos = @[photo];
     UIViewController* controller = [UIApplication sharedApplication].delegate.window.rootViewController;
     [FBSDKShareDialog showFromViewController:controller withContent:content delegate:self];
-
-    FBSDKShareButton *button = [[FBSDKShareButton alloc] init];
-    button.shareContent = content;  
-    [self.view addSubview:button];
 }
 
 - (void)facebookShareLink:(NSString*)quote
@@ -141,9 +139,11 @@
     FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
     content.contentURL = [NSURL URLWithString:url];
     content.quote = quote;
-    // UIViewController* controller = [UIApplication sharedApplication].delegate.window.rootViewController;
-    [FBSDKShareDialog showFromViewController:self withContent:content delegate:nil];
-}
+    UIViewController* controller = [UIApplication sharedApplication].delegate.window.rootViewController;
+[FBSDKShareDialog showFromViewController:self
+                              withContent:content
+                                 delegate:nil];
+    }
 
 - (void)instagramShare:(NSString*)imagePath {
     NSError *error = nil;
@@ -209,3 +209,15 @@
 }
 
 @end
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
