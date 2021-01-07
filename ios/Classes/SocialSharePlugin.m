@@ -205,3 +205,5 @@
     [_channel invokeMethod:@"onError" arguments:nil];
     NSLog(@"%@",error);
 }
+
+@end
