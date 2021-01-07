@@ -11,7 +11,6 @@ class SocialSharePlugin {
 
   static Future<String> get platformVersion async {
     final String version = await _channel.invokeMethod('getPlatformVersion');
-    print('test8');
     return version;
   }
 

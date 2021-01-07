@@ -62,51 +62,17 @@
   if ([@"getPlatformVersion" isEqualToString:call.method]) {
     result([@"iOS " stringByAppendingString:[[UIDevice currentDevice] systemVersion]]);
   } else if ([@"shareToFeedInstagram" isEqualToString:call.method]) {
-      NSURL *instagramURL = [NSURL URLWithString:@"instagram://app"];
-      if([[UIApplication sharedApplication] canOpenURL:instagramURL]) {
-          [self instagramShare:call.arguments[@"path"]];
-          result(nil);
-      } else {
-          NSString *instagramLink = @"itms-apps://itunes.apple.com/us/app/apple-store/id389801252";
-          if (@available(iOS 10.0, *)) {
-              [[UIApplication sharedApplication] openURL:[NSURL URLWithString:instagramLink] options:@{} completionHandler:^(BOOL success) {}];
-          } else {
-              [[UIApplication sharedApplication] openURL:[NSURL URLWithString:instagramLink]];
-          }
-          result(false);
-      }
+    [self instagramShare:call.arguments[@"path"]];
+    result(nil);
   } else if ([@"shareToFeedFacebook" isEqualToString:call.method]) {
-      NSURL *fbURL = [NSURL URLWithString:@"fbapi://"];
-      if([[UIApplication sharedApplication] canOpenURL:fbURL]) {
-          [self facebookShare:call.arguments[@"path"]];
-          result(nil);
-      } else {
-          NSString *fbLink = @"itms-apps://itunes.apple.com/us/app/apple-store/id284882215";
-          if (@available(iOS 10.0, *)) {
-              [[UIApplication sharedApplication] openURL:[NSURL URLWithString:fbLink] options:@{} completionHandler:^(BOOL success) {}];
-          } else {
-              [[UIApplication sharedApplication] openURL:[NSURL URLWithString:fbLink]];
-          }
-          result(false);
-      }
+    [self facebookShare:call.arguments[@"path"]];
+    result(nil);
   } else if([@"shareToFeedFacebookLink" isEqualToString:call.method]) {
-        [self facebookShareLink:call.arguments[@"quote"] url:call.arguments[@"url"]];
-        result(nil);
-
+    [self facebookShareLink:call.arguments[@"quote"] url:call.arguments[@"url"]];
+    result(nil);
   } else if([@"shareToTwitterLink" isEqualToString:call.method]) {
-      NSURL *twitterURL = [NSURL URLWithString:@"twitter://"];
-      if([[UIApplication sharedApplication] canOpenURL:twitterURL]) {
-          [self twitterShare:call.arguments[@"text"] url:call.arguments[@"url"]];
-          result(nil);
-      } else {
-          NSString *twitterLink = @"itms-apps://itunes.apple.com/us/app/apple-store/id333903271";
-          if (@available(iOS 10.0, *)) {
-              [[UIApplication sharedApplication] openURL:[NSURL URLWithString:twitterLink] options:@{} completionHandler:^(BOOL success) {}];
-          } else {
-              [[UIApplication sharedApplication] openURL:[NSURL URLWithString:twitterLink]];
-          }
-          result(false);
-      }
+    [self twitterShare:call.arguments[@"text"] url:call.arguments[@"url"]];
+    result(nil);
   } else {
     result(FlutterMethodNotImplemented);
   }
