@@ -65,7 +65,7 @@
     [self instagramShare:call.arguments[@"path"]];
     result(nil);
   } else if ([@"shareToFeedFacebook" isEqualToString:call.method]) {
-    [self facebookShare:call.arguments[@"path"] caption:call.arguments[@"caption"]];
+    [self facebookShare:call.arguments[@"path"]];
     result(nil);
   } else if([@"shareToFeedFacebookLink" isEqualToString:call.method]) {
     [self facebookShareLink:call.arguments[@"quote"] url:call.arguments[@"url"]];
@@ -85,9 +85,6 @@
     photo.image = [[UIImage alloc] initWithContentsOfFile:imagePath];
     FBSDKSharePhotoContent *content = [[FBSDKSharePhotoContent alloc] init];
     content.photos = @[photo];
-    if(quote) {
-        content.caption = caption;
-    }
     UIViewController* controller = [UIApplication sharedApplication].delegate.window.rootViewController;
     [FBSDKShareDialog showFromViewController:controller withContent:content delegate:self];
 }
