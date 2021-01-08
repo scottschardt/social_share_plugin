@@ -157,7 +157,7 @@ public class SocialSharePlugin
             case "shareToFeedFacebookLink":
                 try {
                     pm.getPackageInfo(FACEBOOK_PACKAGE_NAME, PackageManager.GET_ACTIVITIES);
-                    facebookShareLink(call.<String>argument("quote"), call.<String>argument("url"));
+                    facebookShareLink(call.<String>argument("quote"), call.<String>argument("contentTitle"), call.<String>argument("contentDescription"), call.<String>argument("url"));
                     result.success(true);
                 } catch (PackageManager.NameNotFoundException e) {
                     openPlayStore(FACEBOOK_PACKAGE_NAME);
@@ -246,9 +246,9 @@ public class SocialSharePlugin
         }
     }
 
-    private void facebookShareLink(String quote, String url) {
+    private void facebookShareLink(String quote, String url, String contentTitle, String contentDescription) {
         final Uri uri = Uri.parse(url);
-        final ShareLinkContent content = new ShareLinkContent.Builder().setContentUrl(uri).setQuote(quote).build();
+        final ShareLinkContent content = new ShareLinkContent.Builder().setContentUrl(uri).setQuote(quote).setContentDescription(contentDescription).setContentTitle(contentTitle).build();
         final ShareDialog shareDialog = new ShareDialog(activity);
         shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
             @Override
