@@ -63,6 +63,8 @@ class SocialSharePlugin {
 
   static Future<dynamic> shareToFeedFacebookLink({
     String quote,
+    String contentTitle,
+    String contentDescription,
     String url,
     OnSuccessHandler onSuccess,
     OnCancelHandler onCancel,
@@ -82,6 +84,8 @@ class SocialSharePlugin {
     });
     return _channel.invokeMethod('shareToFeedFacebookLink', <String, dynamic>{
       'quote': quote,
+      'contentTitle': contentTitle,
+      'contentDescription': contentDescription,
       'url': url,
     });
   }
