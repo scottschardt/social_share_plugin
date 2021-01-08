@@ -78,7 +78,6 @@
   }
 }
 
-
 - (void)facebookShare:(NSString*)imagePath
                 caption:(NSString*)caption {
     //NSURL* path = [[NSURL alloc] initWithString:call.arguments[@"path"]];
