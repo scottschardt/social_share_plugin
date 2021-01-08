@@ -78,8 +78,7 @@
   }
 }
 
-- (void)facebookShare:(NSString*)imagePath
-                caption:(NSString*)caption {
+- (void)facebookShare:(NSString*)imagePath {
     //NSURL* path = [[NSURL alloc] initWithString:call.arguments[@"path"]];
     FBSDKSharePhoto *photo = [[FBSDKSharePhoto alloc] init];
     photo.image = [[UIImage alloc] initWithContentsOfFile:imagePath];
